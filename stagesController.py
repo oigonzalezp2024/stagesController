@@ -19,7 +19,7 @@ class StagesController(CreateDDL):
         self.getKeyNames()
         self.defineTableStructure()
         self.setPathSQL()
-        self.formatContent()      
+        self.formatContent()
         self.setContent()
         self.updateContent()
         self.createTable()
