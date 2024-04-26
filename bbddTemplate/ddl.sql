@@ -1,2 +1,1 @@
-DROP TABLE IF EXISTS tableName;
-CREATE TABLE tableName()
+CREATE TABLE IF NOT EXISTS tableName()

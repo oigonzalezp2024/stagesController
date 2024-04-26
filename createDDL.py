@@ -67,7 +67,7 @@ class CreateDDL(Connector):
         self.res = res+str(";\n\n")
 
     def updateContent(self):
-        f = open(self.pathContent,"a")
+        f = open(self.pathContent,"w")
         f.write(self.content)
         f.close()
 
@@ -84,7 +84,7 @@ class CreateDDL(Connector):
         f = open(pathSQL,"r")
         content = f.read()
         f.close()
-        mycursor.execute(content, multi=True)
+        mycursor.execute(content)
 
     def getMappingKeyNames(self):
         self.keyNames = []
