@@ -3,6 +3,7 @@ import json
 import os
 import mysql.connector
 from connector import Connector
+from xamppSubprocesses import XammpSubprocesses
 
 class CreateDDL(Connector):
 
@@ -176,3 +177,6 @@ class CreateDDL(Connector):
             mycursor.executemany(sql, i)
             mydb.commit()
         print(mycursor.rowcount, "was inserted.")
+
+    def xammpSubprocesses(self):
+        XammpSubprocesses()
