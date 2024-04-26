@@ -1,0 +1,2 @@
+Aquí se guardan los archivos Json a los que se les desea crear
+una tabla en la base de datos.
