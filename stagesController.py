@@ -4,7 +4,6 @@ from createDDL import CreateDDL
 class StagesController(CreateDDL):
 
     def controller(self):
-        self.xammpSubprocesses()
         self.setTable()
         self.setPathNewMapping()
         self.getContent()

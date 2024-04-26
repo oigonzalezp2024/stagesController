@@ -3,7 +3,6 @@ import json
 import os
 import mysql.connector
 from connector import Connector
-from xamppSubprocesses import XammpSubprocesses
 
 class CreateDDL(Connector):
 
@@ -85,7 +84,7 @@ class CreateDDL(Connector):
         f = open(pathSQL,"r")
         content = f.read()
         f.close()
-        mycursor.execute(content)
+        mycursor.execute(content, multi=True)
 
     def getMappingKeyNames(self):
         self.keyNames = []
@@ -156,7 +155,7 @@ class CreateDDL(Connector):
         f.close()
 
         res = json.loads(content)
-        print("ddddd",len(res))
+        print("Registros cargados",len(res))
         keys = []
         for i in res[0]:
             keys.append(i)
@@ -177,6 +176,3 @@ class CreateDDL(Connector):
             mycursor.executemany(sql, i)
             mydb.commit()
         print(mycursor.rowcount, "was inserted.")
-
-    def xammpSubprocesses(self):
-        XammpSubprocesses()
