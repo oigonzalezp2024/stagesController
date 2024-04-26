@@ -99,35 +99,35 @@ class CreateDDL(Connector):
         for i in self.keyNames:
             self.mappingN[i] = []
             
-        self.aaaa()
-        self.bbbb()
-        self.cccc()
-        self.dddd()
-        self.eeee()
-        self.ffff()
+        self.stage1()
+        self.stage2()
+        self.stage3()
+        self.stage4()
+        self.stage5()
+        self.stage6()
 
-    def aaaa(self):
+    def stage1(self):
         for i in self.res:
             for ii in self.keyNames:
                 self.mappingN[ii].append(i[ii])
 
-    def bbbb(self):
+    def stage2(self):
         for keyy in self.mappingN:
             self.dataT.append(self.mappingN[keyy])
 
-    def cccc(self):
+    def stage3(self):
         i = 0
         for ii in self.mappingN:
             self.typesN[ii] = str(type(self.dataT[i][0])).replace("<class '","").replace("\'>","")
             self.longgN[ii] = len(str(max(self.dataT[i])))
             i = i+1
 
-    def dddd(self):
+    def stage4(self):
         self.databaseNameN = self.database.replace(os.path.split(self.database)[1], "").replace("./data/","").replace("/","")
         self.tableNameN = os.path.split(self.database)[1].replace(".json","")
         self.dataN = self.res[0]
 
-    def eeee(self):
+    def stage5(self):
         self.mappingN = []
         self.mappingN.append({
             "databaseName": self.databaseNameN,
@@ -137,25 +137,28 @@ class CreateDDL(Connector):
             "example": self.dataN
         })
 
-    def ffff(self):
+    def stage6(self):
         self.content = json.dumps(self.mappingN, sort_keys=False, indent=4)
         self.pathContent = "./data/mapping/"+str(self.tableNameN)+str(".json")
 
     def insertMigr(self):
-        mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="sige"
-        )
+        database = self.databaseName
+        mydb = self.connectorDataBase(database)
         mycursor = mydb.cursor()
-        sql = "INSERT INTO promediosSipsaCiudad(ciudad, codProducto, enviado, fechaCaptura, fechaCreacion, precioPromedio, producto, regId) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);"
-        f = open("./data/database/promediosSipsaCiudad.json","r")
+        text = ""
+        bind = "%s,"
+        binds = ""
+        for i in self.keyNames:
+            text = text+str(i)+", "
+            binds = binds+bind
+
+        sql = "INSERT INTO "+str(self.tableNameN)+"("+str(text[:-2])+") VALUES ("+str(binds[:-1])+");"
+        f = open("./data/database/"+str(self.tableNameN)+".json","r")
         content = f.read()
         f.close()
 
         res = json.loads(content)
-        print("Registros cargados",len(res))
+        print("Registros a cargar",len(res))
         keys = []
         for i in res[0]:
             keys.append(i)
