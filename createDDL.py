@@ -84,7 +84,7 @@ class CreateDDL(Connector):
         f = open(pathSQL,"r")
         content = f.read()
         f.close()
-        mycursor.execute(content)
+        mycursor.execute(content, multi=True)
 
     def getMappingKeyNames(self):
         self.keyNames = []
