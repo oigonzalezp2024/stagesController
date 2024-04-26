@@ -6,7 +6,7 @@ La clase StagesController permite:
 
 - Establece la configuración DDL mínina de una tabla de base de una datos MySQL destino, a partir de una estructura Json que se haya generado a partir de la consulta a una base de datos origen.
 - Crea el diseño de las tablas necesarias para el diseño de la base de datos destino en:<b>"./bbdd/ddl.sql"</b>.
-- Después de establecer la configuración de las tablas, crea las tablas en la base de datos destino. Para ello, el programa de forma interna, enciende Apache y MySQL de Xammp, y ejecuta las consultas desarrolladas por el mismo, todo de forma automática.  
+- Después de establecer la configuración de las tablas, crea las tablas en la base de datos destino y ejecuta las consultas desarrolladas por el mismo, todo de forma automática.  
 
 Desde luego, esta es una herramienta para usar solo en entornos de desarrollo.
 
