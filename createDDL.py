@@ -155,7 +155,7 @@ class CreateDDL(Connector):
         f.close()
 
         res = json.loads(content)
-        print("ddddd",len(res))
+        print("Registros cargados",len(res))
         keys = []
         for i in res[0]:
             keys.append(i)
