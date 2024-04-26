@@ -27,13 +27,6 @@ class CreateDDL(Connector):
         f.close()
         self.content = content
 
-    def setTable(self):
-        self.database = "./data/database/promediosSipsaCiudad.json"
-        self.pathMapping = "./data/mapping/promediosSipsaCiudad.json"
-        self.bbddTemplate = "./bbddTemplate/ddl.sql"
-        self.databaseName = "sige"
-        self.pathSQL = "./bbdd/ddl.sql"
-
     def getKeyNames(self):
         res = self.res
         keyNames = []
