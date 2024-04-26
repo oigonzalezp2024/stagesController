@@ -84,7 +84,7 @@ class CreateDDL(Connector):
         f = open(pathSQL,"r")
         content = f.read()
         f.close()
-        mycursor.execute(content)
+        mycursor.execute(content, multi=True)
 
     def getMappingKeyNames(self):
         self.keyNames = []
@@ -155,7 +155,7 @@ class CreateDDL(Connector):
         f.close()
 
         res = json.loads(content)
-        print("ddddd",len(res))
+        print("Registros cargados",len(res))
         keys = []
         for i in res[0]:
             keys.append(i)
