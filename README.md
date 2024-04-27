@@ -7,12 +7,7 @@ La clase StagesController permite:
 - Establece la configuración DDL mínina de una tabla de base de una datos MySQL destino, a partir de una estructura Json que se haya generado a partir de la consulta a una base de datos origen.
 - Crea el diseño de las tablas necesarias para el diseño de la base de datos destino en:<b>"./bbdd/ddl.sql"</b>.
 - Después de establecer la configuración de las tablas, crea las tablas en la base de datos destino y ejecuta las consultas desarrolladas por el mismo, todo de forma automática.  
-
-Desde luego, esta es una herramienta para usar solo en entornos de desarrollo.
-
-## En etapa de desarrollo:
-La próxima mejora:
-- Que el programa poble la tabla de la base de datos destino, a partir del diseño de una consulta que el mismo haya configurado, terminando así un proceso de integración básico.
+- Pobla la tabla de la base de datos destino, a partir del diseño de una consulta que el mismo haya configurado, terminando así un proceso de integración básico.
 
 ## Documentación técnica
 
@@ -28,6 +23,35 @@ La próxima mejora:
 | librería | Descripción | Comando |
 | :----    | :---        | :---    |
 | mysql-connector | Permite el acceso a una base de datos mysql | python -m pip install mysql-connector |
+
+### Demo
+El modo de uso es bastante simple, la única recomendación por ahora, es respetar la ubicación de los archivos. 
+```python
+from stagesController import StagesController
+
+stagesController = StagesController()
+# define el nombre de la base de datos destino
+stagesController.setDatabaseName("sige")
+
+# Primera tabla
+
+# estructura Json a procesar
+stagesController.setDatabaseJson("./data/database/customers.json")
+# ruta donde se guardará el mapeo
+stagesController.setPathMapp("./data/mapping/customers.json")
+# ruta donde se guardará el dll generado
+stagesController.setPathEndSQL("./bbdd/customers.sql")
+### ejecutese el programa
+stagesController.controller()
+
+# Segunda tabla
+
+stagesController.setDatabaseJson("./data/database/promediosSipsaCiudad.json")
+stagesController.setPathMapp("./data/mapping/promediosSipsaCiudad.json")
+stagesController.setPathEndSQL("./bbdd/promediosSipsaCiudad.sql")
+stagesController.controller()
+
+```
 
 ### Realice sus pruebas, actualizaciones o modificaciones.
 > Puedes actualizar, contribuir y mejorar el presente software, es libre. Licencia GNU v3.  
