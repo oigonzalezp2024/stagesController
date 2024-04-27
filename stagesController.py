@@ -19,6 +19,7 @@ class StagesController(CreateDDL):
         self.pathMapping = pathMapping
 
     def controller(self):
+        self.setBbddTemplate("./bbddTemplate/ddl.sql")
         self.setPathNewMapping()
         self.getContent()
         self.jsonLoads()  
