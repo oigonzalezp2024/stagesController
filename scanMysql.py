@@ -9,7 +9,7 @@ readDDL.setPathSQL('./bbddTemplate/scanMySQL.sql')
 readDDL.setPathJson('./data/database/scanMySQL.json')
 readDDL.readStructureTables()
 
-# Crea un informe completo sobre todas las tablas
+# Crea un informe completo sobre las tablas
 stagesController = StagesController()
 stagesController.setDatabaseName("sige")
 stagesController.setDatabaseJson("./data/database/scanMySQL.json")
